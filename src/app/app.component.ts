@@ -1,27 +1,15 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import * as fromRoot from '@app/root-store';
-import {select, Store} from '@ngrx/store';
-
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   template: `
-    <app-toolbar [title]="currentPageTitle$ | async" ></app-toolbar>
-
     <div class="container">
       <router-outlet></router-outlet>
-      <app-footer></app-footer>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+  constructor() {}
 
-  currentPageTitle$ = this.store.pipe(
-    select(fromRoot.getCurrentTitle)
-  );
-  constructor(private store: Store<fromRoot.State>) {}
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
